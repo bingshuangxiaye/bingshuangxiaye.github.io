@@ -222,20 +222,13 @@
 
 
   
-    <article id="post-New Document" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-梯度下降" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##Bias和Variance##</p>
-<p>首先，为了提高机器学习模型的性能(performance)，我们需要对模型进行训练，而训练出的模型的输出值和真实值之间的差距就是<strong>generalization error</strong>，它就是bias+variance。</p>
-<p>其次需要明确的是，我们用来训练的数据只是真实数据的一部分，如果能够用一个模型拟合所有的真实数据使得Loss最小，那么这个模型一定就是我们期望得到的模型，称为<strong>“真实模型”</strong>，可惜它无法得到，我们只能够得到一个近似的真实模型</p>
-<ul>
-<li><strong>bias</strong>:表示利用所有可能的训练集得到的所有模型输出的平均值与真   实模型输出值的差距</li>
-<li><strong>variance</strong>:不同训练数据训练得到的模型的输出值之间的差距</li>
-</ul>
-<p>再次强调，我们用来训练的数据实际上只是全部数据的一小部分，所以使用不同的训练数据对模型进行训练得到的模型肯定是不同的，如果能够让bias和variance都尽可能的小，那么认为我们得到的模型效果很好。</p>
-<p>在交叉验证中，对于未经的模型来说，bias很大，但是variance很小，因为未经训练，所以模型并没有受到训练数据的影响，这时模型参数过于简单无法用于预测，这就是欠拟合（unfitting）。开始训练之后，就发现bias开始变小，说明模型开始学习训练数据的一系列特征，再继续训练的话就会发现模型会过于熟悉训练数据从而无法适应更多的数据，泛化能力差，这就成了我们所说的过拟合（overfitting）。</p>
+        <p>##梯度下降与Adam算法##</p>
+<p>###梯度下降###<br>输入：带有标签的数据集S，</p>
 
       
 
@@ -248,7 +241,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/20/New Document/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/05/20/梯度下降/">展开全文 >></a>
         </p>
       
 
@@ -278,13 +271,20 @@
 
 
   
-    <article id="post-梯度下降" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-New Document" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##梯度下降与Adam算法##</p>
-<p>###梯度下降###<br>输入：带有标签的数据集S，</p>
+        <p>##Bias和Variance##</p>
+<p>首先，为了提高机器学习模型的性能(performance)，我们需要对模型进行训练，而训练出的模型的输出值和真实值之间的差距就是<strong>generalization error</strong>，它就是bias+variance。</p>
+<p>其次需要明确的是，我们用来训练的数据只是真实数据的一部分，如果能够用一个模型拟合所有的真实数据使得Loss最小，那么这个模型一定就是我们期望得到的模型，称为<strong>“真实模型”</strong>，可惜它无法得到，我们只能够得到一个近似的真实模型</p>
+<ul>
+<li><strong>bias</strong>:表示利用所有可能的训练集得到的所有模型输出的平均值与真   实模型输出值的差距</li>
+<li><strong>variance</strong>:不同训练数据训练得到的模型的输出值之间的差距</li>
+</ul>
+<p>再次强调，我们用来训练的数据实际上只是全部数据的一小部分，所以使用不同的训练数据对模型进行训练得到的模型肯定是不同的，如果能够让bias和variance都尽可能的小，那么认为我们得到的模型效果很好。</p>
+<p>在交叉验证中，对于未经的模型来说，bias很大，但是variance很小，因为未经训练，所以模型并没有受到训练数据的影响，这时模型参数过于简单无法用于预测，这就是欠拟合（unfitting）。开始训练之后，就发现bias开始变小，说明模型开始学习训练数据的一系列特征，再继续训练的话就会发现模型会过于熟悉训练数据从而无法适应更多的数据，泛化能力差，这就成了我们所说的过拟合（overfitting）。</p>
 
       
 
@@ -297,7 +297,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/20/梯度下降/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/05/20/New Document/">展开全文 >></a>
         </p>
       
 
