@@ -152,6 +152,181 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-过拟合和欠拟合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##过拟合与欠拟合##</p>
+<ul>
+<li><strong>泛化能力：</strong>指机器学习算法适应新鲜样本的能力，而过拟合和欠拟合都是机器学习模型泛化能力不足的体现。</li>
+</ul>
+<p>###欠拟合###<br>模型没有捕捉到数据特征从而无法很好的拟合数据。</p>
+<p><strong>解决方法</strong>：</p>
+<p>1）增加特征项，组合，增加上下文特征等都是很好的手段</p>
+<p>2）添加多项式特征，比如一条直线拟合不了，那么可以利用二次三次项</p>
+<p>3）减少正则化参数</p>
+<p>###过拟合###<br>模型将训练用的数据特征学的太彻底导致后期<strong>测试</strong>的时候无法对测试样本进行正确的分类，具体就是在训练集上误差很小但是在测试集上误差较大，泛化能力不足。</p>
+<p><strong>解决方法</strong></p>
+<p>1）重新清洗数据</p>
+<p>2）增大训练数据规模</p>
+<p>3）正则化方法</p>
+<p>4）对于树模型，可以使用预剪枝和后剪枝的方法</p>
+<p>5）对于网络模型，可以dropout,提前停止迭代，交叉验证，加大训练数据规模等方法</p>
+<p>###正则化###<br><strong>L0,L1和L2正则</strong></p>
+<ul>
+<li><strong>L0：</strong>参数中非零参数的个数，求解L0正则化是一个NP问题，因此提出了L1和L2正则。</li>
+<li><strong>L1：</strong>各个参数绝对值之和。当模型达到收敛时，往往会达到与正则项的边界方向平行或者在坐标轴上，由于与边界方向平行的可能性很低，所以最终得到的参数是稀疏的，有利于特征的提取。</li>
+<li><strong>L2：</strong>标识各个参数的平方的和的开方值，取得的参数值均接近于0，就是在保证参数值尽可能小。</li>
+</ul>
+<p>正则化的意义：对于一个模型，真正起作用的特征并不多，如果过于仔细的描述所有的特征会造成过拟合，而如果能够利用最少的特征描述整个训练数据集，那么模型的泛化能力就会得到增强，这也就是正则化的意义。奥卡姆剃刀也正是说明了这一点。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/20/过拟合和欠拟合/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-New Document" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##Bias和Variance##</p>
+<p>首先，为了提高机器学习模型的性能(performance)，我们需要对模型进行训练，而训练出的模型的输出值和真实值之间的差距就是<strong>generalization error</strong>，它就是bias+variance。</p>
+<p>其次需要明确的是，我们用来训练的数据只是真实数据的一部分，如果能够用一个模型拟合所有的真实数据使得Loss最小，那么这个模型一定就是我们期望得到的模型，称为<strong>“真实模型”</strong>，可惜它无法得到，我们只能够得到一个近似的真实模型</p>
+<ul>
+<li><strong>bias</strong>:表示利用所有可能的训练集得到的所有模型输出的平均值与真   实模型输出值的差距</li>
+<li><strong>variance</strong>:不同训练数据训练得到的模型的输出值之间的差距</li>
+</ul>
+<p>再次强调，我们用来训练的数据实际上只是全部数据的一小部分，所以使用不同的训练数据对模型进行训练得到的模型肯定是不同的，如果能够让bias和variance都尽可能的小，那么认为我们得到的模型效果很好。</p>
+<p>在交叉验证中，对于未经的模型来说，bias很大，但是variance很小，因为未经训练，所以模型并没有受到训练数据的影响，这时模型参数过于简单无法用于预测，这就是欠拟合（unfitting）。开始训练之后，就发现bias开始变小，说明模型开始学习训练数据的一系列特征，再继续训练的话就会发现模型会过于熟悉训练数据从而无法适应更多的数据，泛化能力差，这就成了我们所说的过拟合（overfitting）。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/20/New Document/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-梯度下降" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##梯度下降与Adam算法##</p>
+<p>###梯度下降###<br>输入：带有标签的数据集S，</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/20/梯度下降/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Name" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

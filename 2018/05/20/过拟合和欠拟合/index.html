@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="##过拟合与欠拟合##  泛化能力：指机器学习算法适应新鲜样本的能力，而过拟合和欠拟合都是机器学习模型泛化能力不足的体现。  ###欠拟合###模型没有捕捉到数据特征从而无法很好的拟合数据。 解决方法： 1）增加特征项，组合，增加上下文特征等都是很好的手段 2）添加多项式特征，比如一条直线拟合不了，那么可以利用二次三次项 3）减少正则化参数 ###过拟合###模型将训练用的数据特征学的太彻底导致后">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/05/20/过拟合和欠拟合/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="##过拟合与欠拟合##  泛化能力：指机器学习算法适应新鲜样本的能力，而过拟合和欠拟合都是机器学习模型泛化能力不足的体现。  ###欠拟合###模型没有捕捉到数据特征从而无法很好的拟合数据。 解决方法： 1）增加特征项，组合，增加上下文特征等都是很好的手段 2）添加多项式特征，比如一条直线拟合不了，那么可以利用二次三次项 3）减少正则化参数 ###过拟合###模型将训练用的数据特征学的太彻底导致后">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-18T08:02:07.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="##过拟合与欠拟合##  泛化能力：指机器学习算法适应新鲜样本的能力，而过拟合和欠拟合都是机器学习模型泛化能力不足的体现。  ###欠拟合###模型没有捕捉到数据特征从而无法很好的拟合数据。 解决方法： 1）增加特征项，组合，增加上下文特征等都是很好的手段 2）添加多项式特征，比如一条直线拟合不了，那么可以利用二次三次项 3）减少正则化参数 ###过拟合###模型将训练用的数据特征学的太彻底导致后">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,139 +154,163 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-过拟合和欠拟合" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##过拟合与欠拟合##</p>
+<ul>
+<li><strong>泛化能力：</strong>指机器学习算法适应新鲜样本的能力，而过拟合和欠拟合都是机器学习模型泛化能力不足的体现。</li>
+</ul>
+<p>###欠拟合###<br>模型没有捕捉到数据特征从而无法很好的拟合数据。</p>
+<p><strong>解决方法</strong>：</p>
+<p>1）增加特征项，组合，增加上下文特征等都是很好的手段</p>
+<p>2）添加多项式特征，比如一条直线拟合不了，那么可以利用二次三次项</p>
+<p>3）减少正则化参数</p>
+<p>###过拟合###<br>模型将训练用的数据特征学的太彻底导致后期<strong>测试</strong>的时候无法对测试样本进行正确的分类，具体就是在训练集上误差很小但是在测试集上误差较大，泛化能力不足。</p>
+<p><strong>解决方法</strong></p>
+<p>1）重新清洗数据</p>
+<p>2）增大训练数据规模</p>
+<p>3）正则化方法</p>
+<p>4）对于树模型，可以使用预剪枝和后剪枝的方法</p>
+<p>5）对于网络模型，可以dropout,提前停止迭代，交叉验证，加大训练数据规模等方法</p>
+<p>###正则化###<br><strong>L0,L1和L2正则</strong></p>
+<ul>
+<li><strong>L0：</strong>参数中非零参数的个数，求解L0正则化是一个NP问题，因此提出了L1和L2正则。</li>
+<li><strong>L1：</strong>各个参数绝对值之和。当模型达到收敛时，往往会达到与正则项的边界方向平行或者在坐标轴上，由于与边界方向平行的可能性很低，所以最终得到的参数是稀疏的，有利于特征的提取。</li>
+<li><strong>L2：</strong>标识各个参数的平方的和的开方值，取得的参数值均接近于0，就是在保证参数值尽可能小。</li>
+</ul>
+<p>正则化的意义：对于一个模型，真正起作用的特征并不多，如果过于仔细的描述所有的特征会造成过拟合，而如果能够利用最少的特征描述整个训练数据集，那么模型的泛化能力就会得到增强，这也就是正则化的意义。奥卡姆剃刀也正是说明了这一点。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/20/过拟合和欠拟合/" class="archive-article-date">
-  	<time datetime="2018-05-20T14:22:50.209Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/20/过拟合和欠拟合/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/20/New Document/" class="archive-article-date">
-  	<time datetime="2018-05-20T14:22:50.184Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/20/梯度下降/" class="archive-article-date">
-  	<time datetime="2018-05-20T14:22:50.184Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/20/New Document/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/13/Name/" class="archive-article-date">
-  	<time datetime="2018-04-13T14:55:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/13/Name/">Name</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/13/hello-world/" class="archive-article-date">
-  	<time datetime="2018-04-13T14:24:13.062Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/13/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -305,8 +333,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
