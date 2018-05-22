@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Home">
 <meta property="og:description" content="对于欠拟合和过拟合的理解以及解决方法">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2018-05-22T13:36:14.966Z">
+<meta property="og:updated_time" content="2018-05-22T13:42:49.629Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="过拟合与欠拟合">
 <meta name="twitter:description" content="对于欠拟合和过拟合的理解以及解决方法">
@@ -171,7 +171,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p>过拟合与欠拟合是机器学习模型训练的时候常会发现出现的问题，本文就我自己的理解解释了什么事欠拟合和过拟合，并且根据大佬们的博客总结了一些解决方法。<br><a id="more"></a></p>
 <p>##Bias和Variance##</p>
 <p>首先，为了提高机器学习模型的性能(performance)，我们需要对模型进行训练，而训练出的模型的输出值和真实值之间的差距就是<strong>generalization error</strong>，它就是bias+variance。</p>
 <p>其次需要明确的是，我们用来训练的数据只是真实数据的一部分，如果能够用一个模型拟合所有的真实数据使得Loss最小，那么这个模型一定就是我们期望得到的模型，称为<strong>“真实模型”</strong>，可惜它无法得到，我们只能够得到一个近似的真实模型</p>
