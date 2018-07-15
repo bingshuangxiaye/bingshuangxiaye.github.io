@@ -16,15 +16,15 @@
 <meta property="og:site_name" content="Home">
 <meta property="og:description" content="转载一篇很全面的梯度下降优化算法综述">
 <meta property="og:locale" content="Chinese">
-<meta property="og:image" content="http://yoursite.com/2018/03/23/转-梯度下降优化算法综述/SGD波动.png">
-<meta property="og:image" content="http://yoursite.com/2018/03/23/转-梯度下降优化算法综述/动量.bmp">
-<meta property="og:image" content="http://yoursite.com/2018/03/23/转-梯度下降优化算法综述/nesterov.png">
-<meta property="og:image" content="http://yoursite.com/2018/03/23/转-梯度下降优化算法综述/可视化.gif">
+<meta property="og:image" content="http://yoursite.com/2018/03/23/转-梯度下降优化算法综述/转-梯度下降优化算法综述/SGD波动.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/23/转-梯度下降优化算法综述/转-梯度下降优化算法综述/动量.bmp">
+<meta property="og:image" content="http://yoursite.com/2018/03/23/转-梯度下降优化算法综述/转-梯度下降优化算法综述/nesterov.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/23/转-梯度下降优化算法综述/转-梯度下降优化算法综述/可视化.gif">
 <meta property="og:updated_time" content="2018-05-22T13:44:38.214Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[转]梯度下降优化算法综述">
 <meta name="twitter:description" content="转载一篇很全面的梯度下降优化算法综述">
-<meta name="twitter:image" content="http://yoursite.com/2018/03/23/转-梯度下降优化算法综述/SGD波动.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/03/23/转-梯度下降优化算法综述/转-梯度下降优化算法综述/SGD波动.png">
   
     <link rel="alternative" href="/atom.xml" title="Home" type="application/atom+xml">
   
@@ -196,7 +196,7 @@
 <h2 id="2-2-随机梯度下降法"><a href="#2-2-随机梯度下降法" class="headerlink" title="2.2 随机梯度下降法"></a>2.2 随机梯度下降法</h2><p>相反，随机梯度下降法$（stochastic gradient descent, SGD）$根据每一条训练样本$x^{(i)}$和标签$y^{(i)}$更新参数：</p>
 <p>$$θ=θ−η⋅∇_θJ(θ;x^{(i)};y^{(i)})$$</p>
 <p><strong>对于大数据集，因为批梯度下降法在每一个参数更新之前，会对相似的样本计算梯度，所以在计算过程中会有冗余。而$SGD$在每一次更新中只执行一次，从而消除了冗余。因而，通常$SGD$的运行速度更快，同时，可以用于在线学习。$SGD$以高方差频繁地更新，导致目标函数出现如图$1$所示的剧烈波动。</strong></p>
-<p><img src="/2018/03/23/转-梯度下降优化算法综述/SGD波动.png" alt=""></p>
+<p><img src="转-梯度下降优化算法综述/SGD波动.png" alt=""></p>
 <p>与批梯度下降法的收敛会使得损失函数陷入局部最小相比，由于$SGD$的波动性，<strong>一方面，波动性使得$SGD$可以跳到新的和潜在更好的局部最优。另一方面，这使得最终收敛到特定最小值的过程变得复杂，因为SGD会一直持续波动。</strong>然而，<strong>已经证明当我们缓慢减小学习率，SGD与批梯度下降法具有相同的收敛行为，对于非凸优化和凸优化，可以分别收敛到局部最小值和全局最小值。</strong>与批梯度下降的代码相比，SGD的代码片段仅仅是在对训练样本的遍历和利用每一条样本计算梯度的过程中增加一层循环。注意，如$6.1$节中的解释，在每一次循环中，我们打乱训练样本。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(nb_epochs):</span><br><span class="line">    np.random.shuffle(data)</span><br><span class="line">    <span class="keyword">for</span> example <span class="keyword">in</span> data:</span><br><span class="line">        params_grad = evaluate_gradient(loss_function, example, params)</span><br><span class="line">        params = params - learning_rate * params_grad</span><br></pre></td></tr></table></figure>
 <h2 id="2-3-小批量梯度下降法"><a href="#2-3-小批量梯度下降法" class="headerlink" title="2.3 小批量梯度下降法"></a>2.3 小批量梯度下降法</h2><p>小批量梯度下降法最终结合了上述两种方法的优点，在每次更新时使用$n$个小批量训练样本：</p>
@@ -217,7 +217,7 @@
 </ul>
 <h1 id="4-梯度下降优化算法"><a href="#4-梯度下降优化算法" class="headerlink" title="4 梯度下降优化算法"></a>4 梯度下降优化算法</h1><p>下面，我们将列举一些算法，这些算法被深度学习社区广泛用来处理前面提到的挑战。我们不会讨论在实际中不适合在高维数据集中计算的算法，例如诸如<a href="https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization" target="_blank" rel="noopener">牛顿法</a>的二阶方法。</p>
 <h2 id="4-1-动量法"><a href="#4-1-动量法" class="headerlink" title="4.1 动量法"></a>4.1 动量法</h2><p>$SGD$很难通过陡谷，即在一个维度上的表面弯曲程度远大于其他维度的区域[19]，这种情况通常出现在局部最优点附近。在这种情况下，$SGD$摇摆地通过陡谷的斜坡，同时，沿着底部到局部最优点的路径上只是缓慢地前进，这个过程如图$2a$所示。</p>
-<p><img src="/2018/03/23/转-梯度下降优化算法综述/动量.bmp" alt=""></p>
+<p><img src="转-梯度下降优化算法综述/动量.bmp" alt=""></p>
 <p>$图2$</p>
 <p>如图$2b$所示，动量法$[16]$是一种<strong>帮助$SGD$在相关方向上加速并抑制摇摆的一种方法。动量法将历史步长的更新向量的一个分量γ增加到当前的更新向量中（部分实现中交换了公式中的符号）</strong></p>
 <p>$$vt=γv_{t−1}+η∇_θJ(θ)$$</p>
@@ -229,7 +229,7 @@
 <p>$$θ=θ−v_t$$</p>
 <p>自己的理解：在动量的基础上求梯度求得是<strong>双倍移动后的梯度（其实并没有双倍移动，只是不是用当前点的梯度了，用的是上次移动后更前面的点，这样梯度可能更陡，这次下降将更快）</strong></p>
 <p>同时，我们设置动量项γγ大约为0.9。动量法首先计算当前的梯度值（图3中的小的蓝色向量），然后在更新的累积梯度（大的蓝色向量）方向上前进一大步，Nesterov加速梯度下降法NAG首先在先前累积梯度（棕色的向量）方向上前进一大步，计算梯度值，然后做一个修正（绿色的向量）。这个具有预见性的更新防止我们前进得太快，同时增强了算法的响应能力，这一点在很多的任务中对于RNN的性能提升有着重要的意义[2]。</p>
-<p><img src="/2018/03/23/转-梯度下降优化算法综述/nesterov.png" alt=""></p>
+<p><img src="转-梯度下降优化算法综述/nesterov.png" alt=""></p>
 <p>对于NAG的直观理解的另一种解释可以参见<a href="http://cs231n.github.io/neural-networks-3/" target="_blank" rel="noopener">http://cs231n.github.io/neural-networks-3/</a>，同时Ilya Sutskever在其博士论文[18]中给出更详细的综述。</p>
 <p>既然我们能够使得我们的更新适应误差函数的斜率以相应地加速SGD，我们同样也想要使得我们的更新能够适应每一个单独参数，以根据每个参数的重要性决定大的或者小的更新。</p>
 <h2 id="4-3-Adagrad"><a href="#4-3-Adagrad" class="headerlink" title="4.3 $Adagrad$"></a>4.3 $Adagrad$</h2><p>$Adagrad[7]$是这样的一种基于梯度的优化算法：<strong>让学习率适应参数，对于出现次数较少的特征，我们对其采用更大的学习率，对于出现次数较多的特征，我们对其采用较小的学习率</strong>。因此，Adagrad非常<strong>适合处理稀疏数据</strong>。Dean等人[6]发现Adagrad能够极大提高了SGD的鲁棒性并将其应用于Google的大规模神经网络的训练，其中包含了<a href="http://www.wired.com/2012/06/google-x-neural-network/" target="_blank" rel="noopener">YouTube视频</a>中的猫的识别。此外，Pennington等人[15]利用Adagrad训练Glove词向量，因为低频词比高频词需要更大的步长。</p>
@@ -279,7 +279,7 @@
 <p>正如我们在$Adadelta$和$RMSprop$中看到的那样，他们利用上述的公式更新参数，由此生成了$Adam$的更新规则：</p>
 <p>$$\theta_{t+1}=\theta_t-{\eta\over\sqrt{\hat v_t}+\epsilon}\hat m_t$$</p>
 <p>作者建议$β_1$取默认值为$0.9$,$β2$为$0.999$，ϵ为$10^{−8}$。他们从经验上表明$Adam$在实际中表现很好，同时，与其他的自适应学习算法相比，其更有优势。</p>
-<h2 id="4-7-算法可视化"><a href="#4-7-算法可视化" class="headerlink" title="4.7 算法可视化"></a>4.7 算法可视化</h2><p><img src="/2018/03/23/转-梯度下降优化算法综述/可视化.gif" alt=""></p>
+<h2 id="4-7-算法可视化"><a href="#4-7-算法可视化" class="headerlink" title="4.7 算法可视化"></a>4.7 算法可视化</h2><p><img src="转-梯度下降优化算法综述/可视化.gif" alt=""></p>
 <h2 id="4-8-选择使用哪种优化算法？"><a href="#4-8-选择使用哪种优化算法？" class="headerlink" title="4.8 选择使用哪种优化算法？"></a>4.8 选择使用哪种优化算法？</h2><p>那么，我们应该选择使用哪种优化算法呢？如果输入数据是稀疏的，选择任一自适应学习率算法可能会得到最好的结果。选用这类算法的另一个好处是无需调整学习率，选用默认值就可能达到最好的结果。</p>
 <p>总的来说，$RMSprop$是$Adagrad$的扩展形式，用于处理在$Adagrad$中急速递减的学习率。$RMSprop$与$Adadelta$相同，所不同的是$Adadelta$在更新规则中使用参数的均方根进行更新。最后，$Adam$是将偏差校正和动量加入到$RMSprop$中。在这样的情况下，$RMSprop、Adadelta$和$Adam$是很相似的算法并且在相似的环境中性能都不错。$Kingma$等人$[9]$指出在优化后期由于梯度变得越来越稀疏，偏差校正能够帮助Adam微弱地胜过$RMSprop$。综合看来，$Adam$可能是最佳的选择。</p>
 <p>有趣的是，最近许多论文中采用不带动量的$SGD$和一种简单的学习率的退火策略。已表明，通常$SGD$能够找到最小值点，但是比其他优化的$SGD$花费更多的时间，与其他算法相比，$SGD$更加依赖鲁棒的初始化和退火策略，同时，$SGD$可能会陷入鞍点，而不是局部极小值点。因此，如果你关心的是快速收敛和训练一个深层的或者复杂的神经网络，你应该选择一个自适应学习率的方法。</p>
@@ -606,6 +606,18 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据挖掘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">协同过滤</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">最大熵模型</a>
               </li>
              
@@ -622,14 +634,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">模型训练</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">梯度下降</a>
               </li>
              
@@ -638,15 +642,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据挖掘</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">协同过滤</a>
+                <a href="javascript:void(0)" class="js-tag color5">模型训练</a>
               </li>
             
             <div class="clearfix"></div>
